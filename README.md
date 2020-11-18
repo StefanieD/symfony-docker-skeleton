@@ -1,8 +1,8 @@
 # Docker Skeleton for Symfony Projects
 
-This skeleton will provide a complete environment for your Symfony project. 
+This skeleton will provide a complete development environment for your Symfony project. 
 
-It contains
+##### This setup contains
 * MySQL Database
 * Nginx configuration (for Symfony 4 applications)
 * PHP-FPM 7.2
@@ -18,14 +18,13 @@ It contains
 ## Setup Steps
 
 ### 1. Change docker-composer file for debugging with XDebug
-Change value of `XDEBUG_CONFIG` and `PHP_IDE_CONFIG`
+Change the values of `XDEBUG_CONFIG` and `PHP_IDE_CONFIG`
 
-You can get your hostname from terminal
-You'll need it for debugging with x-debug
+You can get your hostname from the console. You'll need it for set up remote debugging with XDebug.
 
 For `PHP_IDE_CONFIG` choose a project name. This will be the name for you PHP Debug Server (Setting in PHPSTORM)
 
-Adapt `PHP_XDEBUG_REMOTE_PORT`.I use 9999 as remote port. You need to change the debuggin port in PHPSTORM settings 
+Adapt `PHP_XDEBUG_REMOTE_PORT`. I use 9999 as remote port. You need to change the debugging port in PHPSTORM settings 
 as well.
 
 ### 2. Copy your project to the project folder
