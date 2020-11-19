@@ -4,15 +4,15 @@ This skeleton will provide a complete development environment for your Symfony p
 
 ##### This setup contains
 * MySQL Database
-* Nginx configuration (for Symfony 4 applications)
-* PHP-FPM 7.2
+* Nginx configuration (tested for Symfony 4 and 5 applications)
+* PHP-FPM 7.4
 * Composer, npm and yarn
 * Mailhog as mail emulator
 
 ##### Tech Stack:
 * Ubuntu 18.04
 * Docker Community 19
-* Symfony 4
+* Symfony 4 or 5
 * PHPSTORM as IDE
 
 ## Setup Steps
@@ -56,3 +56,8 @@ run `docker-compose build`
 run `docker-compose up -d`
 
 You can reach your application at http://localhost:8000
+
+At http://localhost:8025/ you'll reach the Mailhog Frontend
+
+![Mailhog GUI](./doc/images/mailhog.png)
+
