@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.4-fpm
 
 MAINTAINER Stefanie Drost <contact@stefaniedrost.com>
 
@@ -13,34 +13,38 @@ RUN usermod -u 1000 www-data
 #install some base extensions
 RUN apt-get update && \
     apt-get install -y \
-    zlib1g-dev \
-    zip \
-    unzip \
-    libpng-dev \
-    exiftool \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libicu-dev \
-    libpq-dev \
-    libxpm-dev \
-    libvpx-dev \
-    mysql-client \
-    libxml2-dev \
-    sqlite3 libsqlite3-dev \
-    wget
-
-RUN docker-php-ext-install pdo_sqlite \
-    && docker-php-ext-enable pdo_sqlite
+        build-essential \
+        libssl-dev \
+        zlib1g-dev \
+        libzip-dev \
+        libwebp-dev \
+        zip \
+        unzip \
+        libpng-dev \
+        libjpeg-dev \
+        exiftool \
+        libfreetype6-dev \
+        libjpeg62-turbo-dev \
+        libmcrypt-dev \
+        libicu-dev \
+        libpq-dev \
+        libxpm-dev \
+        libvpx-dev \
+        mariadb-client \
+        libxml2-dev \
+        wget
 
 # Install Composer
-RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.16 --install-dir=/usr/local/bin --filename=composer
 RUN composer --version
 
+# Configure GD
+RUN docker-php-ext-configure gd \
+    --with-freetype --with-webp --with-jpeg \
+   && docker-php-ext-install gd
+
 RUN docker-php-ext-install -j$(nproc) \
-   zip \
    exif \
-   gd \
    bcmath \
    intl \
    pcntl \
@@ -48,10 +52,8 @@ RUN docker-php-ext-install -j$(nproc) \
    pdo \
    pdo_mysql \
    pdo_pgsql \
-   mbstring \
    soap \
-   opcache \
-   iconv
+   opcache
 
 # install xdebug
 RUN pecl install xdebug \
