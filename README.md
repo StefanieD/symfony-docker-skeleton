@@ -58,7 +58,7 @@ You can either clone/copy an existing project or create a new one with Symfony.
 
 ### 5. Open your application
 
-You can reach your Symfony app at http://localhost:8000
+You can reach your Symfony app at http://localhost:8080
 
 At http://localhost:8025/ you'll reach the MailHog Frontend
 
