@@ -1,4 +1,4 @@
-FROM php:7.4-fpm
+FROM php:7.2-fpm
 
 MAINTAINER Stefanie Drost <contact@stefaniedrost.com>
 
@@ -30,9 +30,13 @@ RUN apt-get update && \
         libpq-dev \
         libxpm-dev \
         libvpx-dev \
-        mariadb-client \
+        mysql-client \
         libxml2-dev \
+        sqlite3 libsqlite3-dev \
         wget
+
+RUN docker-php-ext-install pdo_sqlite \
+    && docker-php-ext-enable pdo_sqlite
 
 # Install Composer
 RUN curl -sS https://getcomposer.org/installer | php -- --version=1.10.16 --install-dir=/usr/local/bin --filename=composer
@@ -44,16 +48,20 @@ RUN docker-php-ext-configure gd \
    && docker-php-ext-install gd
 
 RUN docker-php-ext-install -j$(nproc) \
+   zip \
    exif \
+   gd \
    bcmath \
    intl \
    pcntl \
    mysqli \
    pdo \
    pdo_mysql \
+   mbstring \
    pdo_pgsql \
    soap \
-   opcache
+   opcache \
+   iconv
 
 # install xdebug
 RUN pecl install xdebug \

@@ -5,7 +5,7 @@ This skeleton will provide a complete development environment for your Symfony p
 ##### This setup contains
 * MySQL Database
 * Nginx configuration (tested for Symfony 4 and 5 applications)
-* PHP-FPM 7.4
+* PHP-FPM 7.2
 * Composer, npm and yarn
 * MailHog as mail emulator
 
